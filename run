@@ -64,6 +64,10 @@ if [[ -z "$DBOX_SKIP_UPDATE" ]]; then
 	fi
 fi
 
+# Change permissions to fix Dropbox failure
+echo "Fixing permissions to fix the Dropbox bug..."
+chmod -R 755 /opt/dropbox/dropbox-lnx.x86_64-$(cat /opt/dropbox/VERSION) #/libdropbox_apex.so
+
 echo "Starting dropboxd ($(cat /opt/dropbox/VERSION))..."
 umask 002
 exec su dropbox -s /bin/bash -c /opt/dropbox/dropboxd
